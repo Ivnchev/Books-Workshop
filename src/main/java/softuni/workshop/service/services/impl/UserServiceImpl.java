@@ -4,7 +4,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import softuni.workshop.data.entities.User;
@@ -25,15 +25,15 @@ public class UserServiceImpl implements UserService {
     private final RoleRepository roleRepository;
     private final ModelMapper mapper;
     private final RoleService roleService;
-    private final PasswordEncoder encoder;
+    private final BCryptPasswordEncoder encoder;
 
     @Autowired
     public UserServiceImpl(
             UserRepository userRepository,
-                           RoleRepository roleRepository,
-                           ModelMapper mapper,
-                           RoleService roleService,
-                           PasswordEncoder encoder
+            RoleRepository roleRepository,
+            ModelMapper mapper,
+            RoleService roleService,
+            BCryptPasswordEncoder encoder
     ) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
